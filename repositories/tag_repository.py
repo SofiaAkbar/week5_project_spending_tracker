@@ -16,3 +16,10 @@ def select_all():
         tag = Tag(result["type"], result["id"])
         tags.append(tag)
     return tags
+
+def select(id):
+    sql = "SELECT * FROM tags WHERE id = %s"
+    values = [id]
+    result = run_sql(sql, values)[0]
+    tag = Tag(result["type"], result["id"])
+    return tag
