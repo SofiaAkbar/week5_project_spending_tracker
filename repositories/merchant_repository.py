@@ -17,3 +17,10 @@ def select_all():
         merchant = Merchant(result["name"], result["id"])
         merchants.append(merchant)
     return merchants
+
+def select(id):
+    sql = "SELECT * FROM merchants WHERE id = %s"
+    values = [id]
+    result = run_sql(sql, values)[0]
+    merchant = Merchant(result["name"], result["id"])
+    return merchant
