@@ -23,3 +23,7 @@ def select(id):
     result = run_sql(sql, values)[0]
     tag = Tag(result["type"], result["id"])
     return tag
+
+def delete_all():
+    sql = "DELETE FROM tags"
+    run_sql(sql)

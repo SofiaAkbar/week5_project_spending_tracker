@@ -7,6 +7,7 @@ from models.tag import Tag
 import repositories.tag_repository as tag_repository
 
 merchant_repository.delete_all()
+tag_repository.delete_all()
 
 merchant_1 = Merchant("Tesco")
 merchant_repository.save(merchant_1)
