@@ -18,4 +18,4 @@ CREATE TABLE transactions (
     date VARCHAR(255),
     tag_id SERIAL REFERENCES tags(id),
     merchant_id SERIAL REFERENCES merchants(id)
-)
+);
