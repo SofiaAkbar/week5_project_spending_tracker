@@ -11,6 +11,7 @@ import repositories.transaction_repository as transaction_repository
 
 merchant_repository.delete_all()
 tag_repository.delete_all()
+transaction_repository.delete_all()
 
 merchant_1 = Merchant("Tesco")
 merchant_repository.save(merchant_1)

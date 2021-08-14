@@ -25,3 +25,6 @@ def select_all():
         transactions.append(transaction)
     return transactions
 
+def delete_all():
+    sql = "DELETE FROM transactions"
+    run_sql(sql)
