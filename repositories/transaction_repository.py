@@ -25,6 +25,15 @@ def select_all():
         transactions.append(transaction)
     return transactions
 
+def select(id):
+    sql = "SELECT * FROM transactions WHERE id = %s"
+    values = [id]
+    result = run_sql(sql, values)[0]
+    tag = tag_repository.select(result["tag_id"])
+    merchant = merchant_repository.select(result["merchant_id"])
+    transaction = Transaction(result["amount"], result["date"], tag, merchant, result["id"])
+    return transaction
+
 def delete_all():
     sql = "DELETE FROM transactions"
     run_sql(sql)
