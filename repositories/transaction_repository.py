@@ -28,3 +28,8 @@ def select_all():
 def delete_all():
     sql = "DELETE FROM transactions"
     run_sql(sql)
+
+def delete(id):
+    sql = "DELETE FROM transactions WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
