@@ -27,3 +27,9 @@ def create_merchant():
     merchant_repository.save(merchant)
     return redirect('/merchants')
 
+# EDIT MERCHANT
+@merchants_blueprint.route("/merchants/<id>/edit")
+def edit_merchant(id):
+    merchant = merchant_repository.select(id)
+    return render_template('merchants/edit.html', merchant=merchant)
+
