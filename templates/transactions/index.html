@@ -15,8 +15,12 @@
         <tr>
             <td><a href="/transactions/{{ transaction.id }}">{{ transaction.date }}</a></td>
             <td>{{ transaction.amount }}</td>
-            <td>{{ transaction.merchant.name }}</td>
-            <td>{{ transaction.tag.type }}</td>
+            <td>
+                <a href="/merchants/{{ transaction.merchant.id }}">{{ transaction.merchant.name }}</a>
+            </td>
+            <td>
+                <a href="/tags/{{ transaction.tag.id }}">{{ transaction.tag.type }}</a>
+            </td>
         </tr>
     {% endfor %}
 </table>
