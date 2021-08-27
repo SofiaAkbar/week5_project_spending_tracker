@@ -5,17 +5,18 @@
 <h1>Tags</h1>
 
 <table>
-<tr>
-    <th>Type</th>
-</tr>
-{% for tag in tags %}
-<tr>
-    <td><a href="/tags/{{ tag.id }}">{{ tag.type }}</a></td>
-</tr>
-
-
-
-
-{% endfor %}
+    <tr>
+        <th>Type</th>
+    </tr>
+    {% for tag in tags %}
+        <tr>
+            <td><a href="/tags/{{ tag.id }}">{{ tag.type }}</a></td>
+        </tr>
+    {% endfor %}
 </table>
+
+<div>
+    <a href="/tags/new"><button>Add a new tag</button></a>
+</div>
+
 {% endblock %}
