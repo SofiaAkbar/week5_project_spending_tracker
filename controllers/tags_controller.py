@@ -39,3 +39,9 @@ def update_tag(id):
     tag_repository.update(tag)
     return redirect("/tags")
 
+# SHOW TAG
+@tags_blueprint.route("/tags/<id>")
+def show_tag(id):
+    tag = tag_repository.select(id)
+    return render_template("tags/show.html", tag=tag)
+
