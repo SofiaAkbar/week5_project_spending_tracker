@@ -15,9 +15,7 @@ def merchants():
 # NEW MERCHANT
 @merchants_blueprint.route("/merchants/new", methods=['GET'])
 def new_merchant():
-    tags = tag_repository.select_all()
-    transactions = transaction_repository.select_all()
-    return render_template("merchants/new.html", tags=tags, transactions=transactions)
+    return render_template("merchants/new.html")
 
 # CREATE MERCHANT
 @merchants_blueprint.route("/merchants", methods=['POST'])
