@@ -43,5 +43,6 @@ def update_tag(id):
 @tags_blueprint.route("/tags/<id>")
 def show_tag(id):
     tag = tag_repository.select(id)
-    return render_template("tags/show.html", tag=tag)
+    transactions = transaction_repository.select_all_from_tag(tag)
+    return render_template("tags/show.html", tag=tag, transactions=transactions)
 

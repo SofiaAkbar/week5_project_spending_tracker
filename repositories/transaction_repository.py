@@ -25,6 +25,32 @@ def select_all():
         transactions.append(transaction)
     return transactions
 
+def select_all_from_merchant(merchant):
+    transactions = []
+    sql = "SELECT * FROM transactions WHERE merchant_id = %s"
+    values = [merchant.id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        tag = tag_repository.select(row['tag_id'])
+        merchant = merchant_repository.select(row['merchant_id'])
+        transaction = Transaction(row['amount'], row['date'], tag, merchant, row['id'])
+        transactions.append(transaction)
+    return transactions
+
+def select_all_from_tag(tag):
+    transactions = []
+    sql = "SELECT * FROM transactions WHERE tag_id = %s"
+    values = [tag.id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        tag = tag_repository.select(row['tag_id'])
+        merchant = merchant_repository.select(row['merchant_id'])
+        transaction = Transaction(row['amount'], row['date'], tag, merchant, row['id'])
+        transactions.append(transaction)
+    return transactions
+
 def select(id):
     sql = "SELECT * FROM transactions WHERE id = %s"
     values = [id]
@@ -46,4 +72,4 @@ def delete(id):
 def update(transaction):
     sql = "UPDATE transactions SET (amount, date, tag_id, merchant_id) = (%s, %s, %s, %s) WHERE id = %s"
     values = [transaction.amount, transaction.date, transaction.tag.id, transaction.merchant.id, transaction.id]
-    run_sql(sql, values)
+    run_sql(sql, values) 

@@ -6,4 +6,24 @@
 
 <p><a href="/merchants/{{ merchant.id }}/edit">Edit</a></p>
 
+<h3>Transactions</h3>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Merchant</th>
+        <th>Tag</th>
+    </tr>
+    {% for transaction in transactions %}
+        <tr>
+            <td><a href="/transactions/{{ transaction.id }}">{{ transaction.date }}</a></td>
+            <td>{{ transaction.amount }}</td>
+            <td>{{ transaction.merchant.name }}</td>
+            <td>
+                <a href="/tags/{{ transaction.tag.id }}">{{ transaction.tag.type }}</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
 {% endblock %}
