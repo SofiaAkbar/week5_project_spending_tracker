@@ -37,7 +37,7 @@ def update_tag(id):
     type = request.form["type"]
     tag = Tag(type, id)
     tag_repository.update(tag)
-    return redirect("/tags")
+    return redirect(f"/tags/{tag.id}")
 
 # SHOW TAG
 @tags_blueprint.route("/tags/<id>")
