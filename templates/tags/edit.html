@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<h2>Update a Tag</h2>
+<h2>Update Tag: {{ tag.type }}</h2>
 
 <form action="/tags/{{ tag.id}}" method="POST">
 
     <label for="tag">Tag Type:</label>
-    <input type="text" id="type" name="type">
+    <input type="text" id="type" name="type" value="{{ tag.type }}">
     <input type="submit">
 </form>
 
