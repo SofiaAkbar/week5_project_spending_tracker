@@ -33,7 +33,13 @@ def create_transaction():
 
     merchant_id = request.form['merchant']
     merchant = merchant_repository.select(merchant_id)
-    
+
     transaction = Transaction(amount, date, tag, merchant)
     transaction_repository.save(transaction)
     return redirect('/transactions')
+
+# SHOW TRANSACTION
+@transactions_blueprint.route("/transactions/<id>")
+def show_transaction(id):
+    transaction = transaction_repository.select(id)
+    return render_template("transactions/show.html", transaction=transaction)

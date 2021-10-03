@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Transaction Details</h2>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <td>{{transaction.date}}</td>
+    </tr>
+    <tr>
+        <th>Amount</th>
+        <td>{{transaction.amount}}</td>
+    </tr>
+    <tr>
+        <th>Merchant</th>
+        <td><a href="/merchants/{{ transaction.merchant.id }}">{{ transaction.merchant.name }}</a></td>
+    </tr>
+    <tr>
+        <th>Tag</th>
+        <td><a href="/tags/{{ transaction.tag.id }}">{{ transaction.tag.type }}</a></td>
+    </tr>
+</table>
+
+
+{% endblock %}
