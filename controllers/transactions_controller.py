@@ -70,3 +70,9 @@ def update_transaction(id):
     transaction = Transaction(amount, date, tag, merchant, id)
     transaction_repository.update(transaction)
     return redirect(f"/transactions/{transaction.id}")
+
+# DELETE TRANSACTION
+@transactions_blueprint.route("/transactions/<id>/delete", methods=["DELETE"])
+def delete_transaction(id):
+    transaction_repository.delete(id)
+    return redirect("/transactions")
