@@ -22,7 +22,7 @@ def new_transaction():
     tags = tag_repository.select_all()
     return render_template("transactions/new.html", merchants=merchants, tags=tags)
 
-# CREATE MERCHANT
+# CREATE TRANSACTION
 @transactions_blueprint.route("/transactions", methods=['POST'])
 def create_transaction():
     amount = request.form['amount']
@@ -43,3 +43,30 @@ def create_transaction():
 def show_transaction(id):
     transaction = transaction_repository.select(id)
     return render_template("transactions/show.html", transaction=transaction)
+
+# EDIT TRANSACTION
+@transactions_blueprint.route("/transactions/<id>/edit")
+def edit_transaction(id):
+    transaction = transaction_repository.select(id)
+
+    merchants = merchant_repository.select_all()
+    tags = tag_repository.select_all()
+    
+    return render_template('transactions/edit.html', transaction=transaction, merchants=merchants, tags=tags)
+
+# UPDATE TRANSACTION
+@transactions_blueprint.route("/transactions/<id>", methods=["POST"])
+def update_transaction(id):
+    
+    amount = request.form['amount']
+    date = request.form['date']
+
+    tag_id = request.form['tag']
+    tag = tag_repository.select(tag_id)
+
+    merchant_id = request.form['merchant']
+    merchant = merchant_repository.select(merchant_id)
+
+    transaction = Transaction(amount, date, tag, merchant, id)
+    transaction_repository.update(transaction)
+    return redirect(f"/transactions/{transaction.id}")

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Update Transaction Dated: <a href="/transactions/{{ transaction.id }}">{{transaction.date}}</a></h2>
+
+<form action="/transactions/{{ transaction.id}}" method="POST">
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" value="{{transaction.date}}">
+
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" value="{{transaction.amount}}">
+
+    <label for="merchant">Merchant:</label>
+    <select name="merchant" id="merchant">
+        {% for merchant in merchants %}
+            {% if merchant.id == transaction.merchant.id %}
+                <option selected value="{{merchant.id}}">{{merchant.name}}</option>
+            {% else %}
+                <option value="{{merchant.id}}">{{merchant.name}}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+
+    <label for="tag">Tag:</label>
+    <select name="tag" id="tag">
+        {% for tag in tags %}
+            {% if tag.id == transaction.tag.id %}
+                <option selected value="{{tag.id}}">{{tag.type}}</option>
+            {% else %}
+                <option value="{{tag.id}}">{{tag.type}}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    
+    <input type="submit">
+</form>
+
+{% endblock %}
